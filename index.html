@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Laiba Saeed — Software Engineer</title>
+<meta name="description" content="Portfolio of Laiba Saeed, software engineer (React, Next.js, MERN) and machine learning researcher."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#2B1B5A;--navy-dk:#1B1040;--gold:#D63A5C;--gold-lt:#FF8FA3;--cream:#F6F4FF;--white:#FFFFFF;--muted:#5E5A78;--border:#E2DEF3;--card-bg:#FFFFFF;--section-alt:#EEEAFB;--soft-text:#D6D0F0;--mint:#7EE0C3}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Manrope',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold-lt);outline-offset:3px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--cream)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:62px;padding:0 3%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 6px 24px color-mix(in srgb,var(--navy) 12%,transparent)}
+.nav-links{display:flex;gap:2.4rem;list-style:none}
+.nav-links a{font-size:.92rem;font-weight:600;color:var(--navy);padding:6px 2px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.nav-links a:hover{color:var(--gold);border-color:var(--gold)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;position:absolute;right:4%}
+.hamburger span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px}
+#hero{min-height:100vh;display:flex;align-items:center;background:var(--navy);color:var(--white);padding-top:64px;position:relative;overflow:hidden;background-image:radial-gradient(color-mix(in srgb,var(--white) 11%,transparent) 1px,transparent 1px);background-size:28px 28px}
+.hero-inner{max-width:1400px;width:94%;margin:0 auto;padding:4rem 1rem;display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:center}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--gold-lt);margin-bottom:1.2rem;opacity:0;animation:fadeUp .7s ease .1s forwards}
+.hero-name{font-family:'Sora',sans-serif;font-size:clamp(3rem,6vw,5.4rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;color:var(--white);margin-bottom:1.2rem;opacity:0;animation:fadeUp .7s ease .25s forwards}
+.hero-name em{font-style:normal;color:var(--gold-lt)}
+.hero-typing-wrap{font-size:1.15rem;color:var(--soft-text);margin-bottom:1.6rem;min-height:1.8rem;opacity:0;animation:fadeUp .7s ease .4s forwards}
+#typing-text{color:var(--white);font-weight:700;border-right:2px solid var(--gold-lt);animation:blink .75s step-end infinite;padding-right:3px}
+@keyframes blink{from,to{border-color:transparent}50%{border-color:var(--gold-lt)}}
+.hero-desc{color:var(--soft-text);max-width:500px;margin-bottom:2.2rem;opacity:0;animation:fadeUp .7s ease .5s forwards}
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;opacity:0;animation:fadeUp .7s ease .65s forwards}
+.btn-primary,.btn-outline{display:inline-block;padding:.75rem 1.6rem;border-radius:10px;font-weight:700;font-size:.92rem;border:2px solid var(--gold);transition:transform .2s,background .2s,color .2s}
+.btn-primary{background:var(--gold);color:var(--white)}
+.btn-primary:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--navy-dk);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--white);border-color:color-mix(in srgb,var(--white) 55%,transparent)}
+.btn-outline:hover{background:var(--white);color:var(--navy);border-color:var(--white);transform:translateY(-2px)}
+.hero-visual{display:flex;flex-direction:column;align-items:stretch;gap:1.6rem;max-width:480px;width:100%;margin:0 auto;opacity:0;animation:fadeIn 1s ease .5s forwards}
+.code-win{background:var(--navy-dk);border:1px solid color-mix(in srgb,var(--white) 16%,transparent);border-radius:16px;overflow:hidden;box-shadow:10px 10px 0 var(--gold)}
+.code-bar{display:flex;align-items:center;gap:7px;padding:.8rem 1.1rem;border-bottom:1px solid color-mix(in srgb,var(--white) 12%,transparent)}
+.code-bar i{width:11px;height:11px;border-radius:50%;background:color-mix(in srgb,var(--white) 25%,transparent)}
+.code-bar i:first-child{background:var(--gold)}
+.code-bar span{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--soft-text)}
+.code-body{margin:0;padding:1.3rem 1.4rem 1.5rem;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.84rem;line-height:1.85;color:var(--soft-text)}
+.code-body .k,.code-body .n{color:var(--gold-lt)}.code-body .p{color:var(--white)}.code-body .s{color:var(--mint)}
+.stat-row{display:flex;gap:1.4rem;margin-top:.4rem;padding-left:.3rem}
+.stat-item{flex:1}
+.stat-num{font-family:'Sora',sans-serif;font-size:2.2rem;font-weight:800;color:var(--white);line-height:1}
+.stat-label{font-size:.78rem;color:var(--soft-text);margin-top:6px}
+section{padding:5rem 0}
+.container{width:94%;max-width:1400px;margin:0 auto;padding:0 1rem}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--gold);margin-bottom:.6rem}
+.section-title{font-family:'Sora',sans-serif;font-size:clamp(1.8rem,3.4vw,2.7rem);font-weight:700;letter-spacing:-.015em;line-height:1.15;color:var(--navy);margin-bottom:1rem}
+.section-title em{font-style:normal;background:linear-gradient(transparent 62%,color-mix(in srgb,var(--gold) 28%,transparent) 0)}
+.divider{width:44px;height:4px;border-radius:2px;background:var(--gold);margin:1.1rem 0 2.4rem}
+#about{background:var(--section-alt)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start}
+.about-text p{color:var(--muted);margin-bottom:1.1rem;line-height:1.8}
+.skills-block{margin-top:2.2rem}
+.skills-block h4{font-family:'Sora',sans-serif;font-size:1.05rem;margin-bottom:1rem}
+.skill-list{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.skill-list li{display:flex;gap:10px;font-size:.92rem}
+.skill-list li::before{content:'▸';color:var(--gold);flex-shrink:0;font-size:.75rem;margin-top:3px}
+.skill-list li strong{font-weight:700;min-width:140px;flex-shrink:0}
+.about-right{display:flex;flex-direction:column;gap:1.2rem}
+.info-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.7rem}
+.info-card h4{font-family:'Sora',sans-serif;font-size:1rem;margin-bottom:.4rem}
+.info-card p{font-size:.92rem;color:var(--muted)}
+#resume{background:var(--cream)}
+.resume-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.resume-col h3{font-family:'Sora',sans-serif;font-size:1.3rem;margin-bottom:1.8rem;display:flex;align-items:center;gap:12px}
+.resume-col h3 span,.proj-group span{width:28px;height:3px;border-radius:2px;background:var(--gold)}
+.timeline{display:flex;flex-direction:column}
+.timeline-item{display:grid;grid-template-columns:20px 1fr;gap:1.1rem;padding-bottom:1.9rem;position:relative}
+.timeline-dot{width:12px;height:12px;border-radius:50%;background:var(--gold);margin-top:7px;position:relative;z-index:1}
+.timeline-item:not(:last-child) .timeline-dot::after{content:'';position:absolute;top:16px;left:50%;transform:translateX(-50%);width:2px;height:calc(100% + 1.6rem);background:var(--border)}
+.tl-date{font-family:'JetBrains Mono',monospace;font-size:.76rem;color:var(--gold);margin-bottom:.25rem}
+.tl-title{font-family:'Sora',sans-serif;font-size:1rem;font-weight:600;margin-bottom:.2rem}
+.tl-org{font-size:.88rem;color:var(--muted);margin-bottom:.5rem}
+.tl-desc{font-size:.9rem;color:var(--muted);line-height:1.65}
+.cert-link{display:block;color:inherit}
+.cert-link .cert-arrow{color:var(--gold);opacity:0;transition:opacity .2s}
+.cert-link:hover .tl-title{color:var(--gold)}
+.cert-link:hover .cert-arrow{opacity:1}
+#projects{background:var(--section-alt)}
+.proj-group{font-family:'Sora',sans-serif;font-size:1.5rem;margin-bottom:1.8rem;display:flex;align-items:center;gap:12px}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.projects-grid.two{grid-template-columns:repeat(2,1fr)}
+.project-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,border-color .25s,box-shadow .25s}
+.project-card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:6px 6px 0 color-mix(in srgb,var(--gold) 35%,transparent)}
+.proj-img{height:200px;overflow:hidden;background:var(--section-alt)}
+.proj-img img{width:100%;height:100%;object-fit:cover;object-position:top}
+.proj-body{padding:1.5rem;flex:1;display:flex;flex-direction:column}
+.proj-body h4{font-family:'Sora',sans-serif;font-size:1rem;line-height:1.35;margin-bottom:.6rem}
+.proj-body p{font-size:.87rem;color:var(--muted);line-height:1.65;flex:1}
+.feat-tag{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--gold)}
+.tech-tags{display:flex;flex-wrap:wrap;gap:8px;margin:1.1rem 0}
+.tech-tag{background:var(--section-alt);color:var(--navy);font-size:.74rem;font-weight:600;padding:3px 10px;border-radius:8px}
+.proj-link{display:inline-flex;align-items:center;gap:6px;margin-top:1rem;font-size:.85rem;font-weight:700;color:var(--gold);border-bottom:2px solid transparent;transition:border-color .2s}
+.proj-link:hover{border-color:var(--gold)}
+.proj-link::after{content:'→'}
+#contact{background:var(--white);border-top:1px solid var(--border)}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-intro p{color:var(--muted);line-height:1.8;margin-bottom:2rem}
+.contact-details{display:flex;flex-direction:column;gap:1.1rem}
+.contact-item{display:flex;gap:1rem;align-items:flex-start}
+.contact-item-icon{width:42px;height:42px;border-radius:12px;background:var(--section-alt);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-item-text label{display:block;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted)}
+.contact-item-text a,.contact-item-text span{font-weight:600;font-size:.95rem}
+.contact-item-text a:hover{color:var(--gold)}
+.contact-links{display:flex;flex-direction:column;gap:.9rem;padding-top:1.5rem}
+.contact-link-btn{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.4rem;border:1px solid var(--border);border-radius:12px;font-weight:700;background:var(--cream);transition:background .2s,color .2s,transform .2s}
+.contact-link-btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy);transform:translateX(4px)}
+footer{background:var(--navy-dk);padding:2rem 4%;text-align:center}
+footer p{font-size:.88rem;color:var(--soft-text)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transition:opacity .6s ease}
+.reveal.visible{opacity:1}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero-tag,.hero-name,.hero-typing-wrap,.hero-desc,.hero-btns,.hero-visual,.reveal{opacity:1!important}}
+@media(max-width:1100px){.projects-grid{grid-template-columns:1fr 1fr}.hero-inner{gap:2.5rem}}
+@media(max-width:768px){
+nav{height:60px;padding:0 5%}.nav-links{display:none}.hamburger{display:flex}
+.nav-links.open{display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:var(--white);padding:1.4rem 5%;gap:1rem;border-bottom:1px solid var(--border)}
+section{padding:3.5rem 0}
+.hero-inner{grid-template-columns:1fr;padding:2.5rem 0;gap:2.5rem}
+.hero-btns{flex-direction:column}.hero-btns a{text-align:center}
+.stat-row{flex-wrap:wrap;gap:1rem}
+.about-grid,.resume-grid,.contact-layout{grid-template-columns:1fr;gap:2rem}
+.projects-grid,.projects-grid.two{grid-template-columns:1fr;gap:1.2rem}
+.skill-list li strong{min-width:120px}
+.code-win{box-shadow:7px 7px 0 var(--gold)}.code-body{font-size:.76rem}}
+@media(max-width:420px){.container{width:92%}.section-title{font-size:1.6rem}.proj-body{padding:1.2rem}}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#hero">Home</a></li><li><a href="#about">About</a></li><li><a href="#experience">Experience</a></li><li><a href="#resume">Resume</a></li><li><a href="#projects">Projects</a></li><li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+</nav>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-tag">Software Engineer</div>
+      <h1 class="hero-name">I'm<br/><em>Laiba</em><br/>Saeed.</h1>
+      <div class="hero-typing-wrap">Specializing in <span id="typing-text"></span></div>
+      <p class="hero-desc">Software engineer who builds responsive web applications with React, Next.js and the MERN stack, and publishes research in machine learning and deep learning. BS Software Engineering graduate with a CGPA of 3.76 / 4.00.</p>
+      <div class="hero-btns">
+        <a href="mailto:laibasaeed026@gmail.com" class="btn-primary">Email Me</a>
+        <a href="https://www.linkedin.com/in/laiba-saeed-9062bb265" class="btn-outline" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Laiba60" class="btn-outline" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://scholar.google.com/citations?user=81XlyzgAAAAJ&hl=en" class="btn-outline" target="_blank" rel="noopener">Google Scholar</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="code-win">
+        <div class="code-bar"><i></i><i></i><i></i><span>laiba.profile.js</span></div>
+<pre class="code-body"><code><span class="k">const</span> laiba = {
+  <span class="p">role</span>: <span class="s">"Software Engineer"</span>,
+  <span class="p">stack</span>: [<span class="s">"React"</span>, <span class="s">"Next.js"</span>, <span class="s">"Node.js"</span>, <span class="s">"MongoDB"</span>],
+  <span class="p">research</span>: [<span class="s">"Deep Learning"</span>, <span class="s">"Computer Vision"</span>, <span class="s">"Agentic AI"</span>],
+  <span class="p">education</span>: <span class="s">"BS Software Engineering"</span>,
+  <span class="p">cgpa</span>: <span class="n">3.76</span>,
+  <span class="p">papers</span>: <span class="n">4</span>,
+  <span class="p">openTo</span>: [<span class="s">"Full-time roles"</span>, <span class="s">"Research"</span>],
+};</code></pre>
+      </div>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-num">3.76</div><div class="stat-label">CGPA</div></div>
+        <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Research Papers</div></div>
+        <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Live Web Apps</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Building Useful<br/><em>Software</em></h2>
+        <div class="divider"></div>
+        <p>Hi there! I'm Laiba, a software engineer who enjoys designing and building software that saves time and makes life easier. I work across the MERN stack and Next.js, and I also research machine learning and computer vision.</p>
+        <p>Since 2025 I have worked with three development teams, shipping responsive interfaces, REST APIs and database-backed features. I have also published four research papers, covering antifreeze protein prediction, potato leaf disease classification, AI in ultrasound-guided regional anesthesia and agentic AI.</p>
+        <div class="skills-block">
+          <h4>Technical Expertise</h4>
+          <ul class="skill-list">
+            <li><strong>Languages:</strong> C, C++, Python, JavaScript, MATLAB, Verilog, Scheme</li>
+            <li><strong>Frontend:</strong> HTML, CSS, JavaScript, React.js, Next.js, Tailwind CSS</li>
+            <li><strong>Backend:</strong> Node.js, Express.js, REST APIs, JWT Authentication</li>
+            <li><strong>Database:</strong> MongoDB</li>
+            <li><strong>ML &amp; Data:</strong> NumPy, Pandas, Scikit-learn, TensorFlow, Matplotlib, LightGBM</li>
+            <li><strong>Deep Learning:</strong> CNNs, Transfer Learning (VGG19, ResNet50V2), Ensemble Models</li>
+            <li><strong>Tools:</strong> Git, GitHub</li>
+          </ul>
+        </div>
+      </div>
+      <div class="about-right reveal">
+        <div class="info-card"><h4>🎓 Academic Background</h4><p>Bachelor of Science in Software Engineering (CGPA 3.76 / 4.00) from Khawaja Fareed University of Engineering and Information Technology, Rahim Yar Khan, completed in June 2025.</p></div>
+        <div class="info-card"><h4>🏅 Scholarship &amp; Leadership</h4><p>Awarded a Merit Scholarship for academic excellence. Served as Class Representative and Group Leader of the final year project.</p></div>
+        <div class="info-card"><h4>🗣️ Languages</h4><p>Urdu (mother tongue) and English.</p></div>
+        <a href="LaibaSaeed_1%20year%20exp%20(1).pdf" class="btn-primary" download>Download CV →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" style="background:var(--white);">
+  <div class="container">
+    <div class="section-label reveal">Career</div>
+    <h2 class="section-title reveal">Work <em>Experience</em></h2>
+    <div class="divider reveal" style="margin-bottom:2.5rem;"></div>
+    <div class="timeline reveal">
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content">
+        <div class="tl-date">Current</div><div class="tl-title">Frontend Developer</div><div class="tl-org">QTO Dev — Lahore, Pakistan</div>
+        <div class="tl-desc"><ul style="margin:.5rem 0 0 1.1rem;display:flex;flex-direction:column;gap:.4rem;"><li>Developed responsive, user-friendly web interfaces with HTML, CSS, JavaScript and React.js.</li><li>Created reusable UI components and interactive web pages.</li><li>Ensured cross-browser compatibility and responsive design on desktop, tablet and mobile.</li><li>Integrated REST APIs to show dynamic data on the frontend.</li><li>Contributed to the Al Habib ePharmacy platform using Next.js, React.js and Tailwind CSS.</li></ul></div>
+      </div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content">
+        <div class="tl-date">2025 — 2026</div><div class="tl-title">MERN Stack Developer</div><div class="tl-org">SMJ Solutions — Rahim Yar Khan, Pakistan</div>
+        <div class="tl-desc"><ul style="margin:.5rem 0 0 1.1rem;display:flex;flex-direction:column;gap:.4rem;"><li>Completed a 6-month apprenticeship under the Prime Minister's Initiative for Capacity Building of IT Industry.</li><li>Maintained responsive web applications using React.js, JavaScript, HTML and CSS.</li><li>Built and integrated REST APIs with Node.js and Express.js, and worked with MongoDB.</li><li>Implemented reusable components, form handling and user authentication and authorization.</li><li><a href="https://drive.google.com/file/d/1_yEr7bzIDZhZLIxDP-UvnylMARntg7Vw/view?usp=sharing" target="_blank" rel="noopener" style="color:var(--gold);font-weight:600;">View experience certificate ↗</a></li></ul></div>
+      </div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content">
+        <div class="tl-date">Aug 2025 — Oct 2025</div><div class="tl-title">Web Developer Intern</div><div class="tl-org">Elevatrix Solutions — Pakistan</div>
+        <div class="tl-desc"><ul style="margin:.5rem 0 0 1.1rem;display:flex;flex-direction:column;gap:.4rem;"><li>Designed and developed responsive web pages using HTML, CSS and JavaScript.</li><li>Helped build and test website features, and fixed bugs to improve the user interface and experience.</li><li>Used Git and GitHub for version control and team collaboration.</li><li><a href="https://drive.google.com/file/d/11FK2NpNqQSlvdmW15wRbathdf8TcFvdI/view?usp=sharing" target="_blank" rel="noopener" style="color:var(--gold);font-weight:600;">View experience certificate ↗</a></li></ul></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section id="resume">
+  <div class="container">
+    <div class="reveal"><div class="section-label">Qualifications</div><h2 class="section-title">Education &amp; Certificates</h2><div class="divider" style="margin-bottom:2.5rem;"></div></div>
+    <div class="resume-grid reveal">
+      <div class="resume-col">
+        <h3><span></span>Education</h3>
+        <div class="timeline">
+          <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="tl-date">Sep 2021 — Jun 2025</div><div class="tl-title">Bachelor of Science in Software Engineering</div><div class="tl-org">Khawaja Fareed University of Engineering and Information Technology, Rahim Yar Khan</div><div class="tl-desc">CGPA 3.76 / 4.00. Major courses: Machine Learning, Computer Vision, Digital Image Processing, Computer Architecture.</div></div></div>
+          <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="tl-date">Aug 2019 — Sep 2021</div><div class="tl-title">Higher Secondary School Certificate</div><div class="tl-org">Madrassat-ul-Binat College, Sadiqabad</div><div class="tl-desc">1087 / 1100 marks</div></div></div>
+          <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="tl-date">Mar 2017 — Aug 2019</div><div class="tl-title">Secondary School Certificate (SSC)</div><div class="tl-org">Fatima Public High School, Sadiqabad</div><div class="tl-desc">1026 / 1100 marks</div></div></div>
+        </div>
+      </div>
+      <div class="resume-col">
+        <h3><span></span>Certifications</h3>
+        <div class="timeline">
+          <div class="timeline-item"><div class="timeline-dot"></div><a class="timeline-content cert-link" href="https://coursera.org/share/a05ffa29972acc403371dd748fdbcff4" target="_blank" rel="noopener"><div class="tl-date">Coursera · Oct 2026</div><div class="tl-title">Google AI Professional Certificate <span class="cert-arrow">↗</span></div><div class="tl-desc">8 courses on AI fundamentals, research, writing, content creation, data analysis, app building and deployment, with practical prompt writing and AI output evaluation.</div></a></div>
+          <div class="timeline-item"><div class="timeline-dot"></div><a class="timeline-content cert-link" href="https://coursera.org/share/f59a79a4afd6db321f50e76e7d685292" target="_blank" rel="noopener"><div class="tl-date">Coursera · Oct 2026</div><div class="tl-title">Google Data Analytics Professional Certificate <span class="cert-arrow">↗</span></div><div class="tl-desc">Data cleaning, analysis, visualization and data-driven decision-making to find trends and communicate insights.</div></a></div>
+          <div class="timeline-item"><div class="timeline-dot"></div><a class="timeline-content cert-link" href="https://drive.google.com/file/d/1ZKT83SXVmP9jAebeSir248rTxSaIDphX/view?usp=drive_link" target="_blank" rel="noopener"><div class="tl-date">PEEF · 2019</div><div class="tl-title">Certificate of Scholarship <span class="cert-arrow">↗</span></div><div class="tl-desc">Awarded by the Punjab Educational Endowment Fund (PEEF) in recognition of academic achievement in the Secondary (SSC) annual examination 2019.</div></a></div>
+          <div class="timeline-item"><div class="timeline-dot"></div><a class="timeline-content cert-link" href="https://drive.google.com/file/d/1ZgKG15KxqTD9SLE52oYhQRNGMet1tvC8/view?usp=drive_link" target="_blank" rel="noopener"><div class="tl-date">Punjab Group of Colleges, Sadiqabad · 2019</div><div class="tl-title">Certificate of Appreciation — Brain of Sadiqabad <span class="cert-arrow">↗</span></div><div class="tl-desc">Awarded for intelligence and outstanding performance in the Brain of Sadiqabad 2019 activity.</div></a></div>
+          <div class="timeline-item"><div class="timeline-dot"></div><a class="timeline-content cert-link" href="https://drive.google.com/file/d/1Esx6TxLdSdAdsUj4uLtI4S7o44tu9oMo/view?usp=drive_link" target="_blank" rel="noopener"><div class="tl-date">Extreme Commerce &amp; ACM KFUEIT · Dec 2022</div><div class="tl-title">Certificate of Participation — Career Counseling <span class="cert-arrow">↗</span></div><div class="tl-desc">Attended the Career Counseling Session conducted by Extreme Commerce Incubation Network at KFUEIT on 1st December 2022.</div></a></div>
+          <div class="timeline-item"><div class="timeline-dot"></div><a class="timeline-content cert-link" href="https://www.life-global.org/certificate/b4936eba-3975-45b0-93f3-21de8f65465c" target="_blank" rel="noopener"><div class="tl-date">HP LIFE</div><div class="tl-title">AI for Beginners <span class="cert-arrow">↗</span></div><div class="tl-desc">Foundations of AI, machine learning, generative AI and large language models, plus ethics and business applications.</div></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-label reveal">Portfolio</div>
+    <h2 class="section-title reveal">Featured <em>Projects</em></h2>
+    <div class="divider reveal"></div>
+    <p class="reveal" style="color:var(--muted);margin-bottom:3rem;max-width:560px;">Live web applications built with React, Next.js and Node.js, followed by published research in machine learning and deep learning.</p>
+
+    <h3 class="proj-group reveal"><span></span>Development Projects</h3>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="proj-img"><img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Falhabibpharmacy.com%2Fen-sa?w=800&h=500" alt="Al Habib ePharmacy website" loading="lazy"/></div>
+        <div class="proj-body"><h4>Al Habib ePharmacy</h4>
+          <p>Contributed to the official online pharmacy platform of Dr. Sulaiman Al Habib Medical Group, Saudi Arabia. Built responsive UI components, product listings and prescription (Rx) order management through REST APIs, with multi-language support.</p>
+          <div class="tech-tags"><span class="tech-tag">Next.js</span><span class="tech-tag">React.js</span><span class="tech-tag">Tailwind CSS</span><span class="tech-tag">REST APIs</span></div>
+          <a href="https://alhabibpharmacy.com/en-sa" class="proj-link" target="_blank" rel="noopener">Visit Website</a></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="proj-img"><img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fjobsonline.netlify.app%2F?w=800&h=500" alt="JobsOnline job portal" loading="lazy"/></div>
+        <div class="proj-body"><h4>JobsOnline — Job Portal</h4>
+          <p>Full-featured job portal where employers post vacancies and candidates browse listings across industry categories. Includes user authentication, candidate profiles, sector filtering and a subscription pricing plan interface.</p>
+          <div class="tech-tags"><span class="tech-tag">React.js</span><span class="tech-tag">Tailwind CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">HTML/CSS</span></div>
+          <a href="https://jobsonline.netlify.app/" class="proj-link" target="_blank" rel="noopener">Live Demo</a></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="proj-img"><img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.luxmedcare.com%2F?w=800&h=500" alt="Clinical CRM website" loading="lazy"/></div>
+        <div class="proj-body"><h4>Clinical CRM Website</h4>
+          <p>Full-stack CRM to manage hospital data: doctor profiles, patient records and appointment booking. Built REST APIs with Node.js and Express, stored data in MongoDB and secured access with JWT authentication.</p>
+          <div class="tech-tags"><span class="tech-tag">React.js</span><span class="tech-tag">Node.js</span><span class="tech-tag">Express.js</span><span class="tech-tag">MongoDB</span><span class="tech-tag">JWT</span></div>
+          <a href="https://www.luxmedcare.com/" class="proj-link" target="_blank" rel="noopener">Visit Website</a></div>
+      </div>
+    </div>
+
+    <h3 class="proj-group reveal" style="margin-top:4rem;"><span></span>Research Based Projects<a href="https://scholar.google.com/citations?user=81XlyzgAAAAJ&hl=en" target="_blank" rel="noopener" class="proj-link" style="margin:0 0 0 auto;font-family:'Manrope',sans-serif;font-size:.8rem;">All papers on Google Scholar</a></h3>
+    <div class="projects-grid two">
+      <div class="project-card reveal">
+        <div class="proj-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkVuc2VtYmxlIG9mIFZHRzE5IGFuZCBSZXNOZXQ1MFYyIGNsYXNzaWZ5aW5nIHBvdGF0byBsZWFmIGRpc2Vhc2UiPjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMTQ1MzJEIi8+PGcgZmlsbD0iI0VDRkNDQiIgb3BhY2l0eT0iLjA3Ij48Y2lyY2xlIGN4PSI0MCIgY3k9IjQwIiByPSIyIi8+PGNpcmNsZSBjeD0iMTIwIiBjeT0iNDAiIHI9IjIiLz48Y2lyY2xlIGN4PSIyMDAiIGN5PSI0MCIgcj0iMiIvPjwvZz4KPHBhdGggZD0iTTExMCAzMzBDNDAgMjUwIDYwIDEyMCAxOTAgNzBjMTEwIDQwIDE1MCAxNTAgODAgMjUwLTMwIDMwLTExMCA0MC0xNjAgMTB6IiBmaWxsPSIjQTNFNjM1Ii8+PHBhdGggZD0iTTExMCAzMzBDMTMwIDI0MCAxNjAgMTYwIDE5MCA3MCIgc3Ryb2tlPSIjMTQ1MzJEIiBzdHJva2Utd2lkdGg9IjUiIGZpbGw9Im5vbmUiLz4KPGNpcmNsZSBjeD0iMTcwIiBjeT0iMTcwIiByPSIyMiIgZmlsbD0iIzZiNGEyYiIvPjxjaXJjbGUgY3g9IjE3MCIgY3k9IjE3MCIgcj0iMTMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0NTMyRCIgc3Ryb2tlLXdpZHRoPSIzIi8+PGNpcmNsZSBjeD0iMjE1IiBjeT0iMjQwIiByPSIxNiIgZmlsbD0iIzZiNGEyYiIvPjxjaXJjbGUgY3g9IjIxNSIgY3k9IjI0MCIgcj0iOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTQ1MzJEIiBzdHJva2Utd2lkdGg9IjMiLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjxyZWN0IHg9IjM0MCIgeT0iOTAiIHdpZHRoPSIxNDAiIGhlaWdodD0iNjQiIHJ4PSIxMiIgZmlsbD0iI2ZmZiIvPjx0ZXh0IHg9IjQxMCIgeT0iMTMwIiBmaWxsPSIjMTQ1MzJEIj5WR0cxOTwvdGV4dD48cmVjdCB4PSIzNDAiIHk9IjI0NiIgd2lkdGg9IjE0MCIgaGVpZ2h0PSI2NCIgcng9IjEyIiBmaWxsPSIjZmZmIi8+PHRleHQgeD0iNDEwIiB5PSIyODYiIGZpbGw9IiMxNDUzMkQiPlJlc05ldDUwVjI8L3RleHQ+CjxyZWN0IHg9IjU0MCIgeT0iMTY4IiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiNCNDUzMDkiLz48dGV4dCB4PSI1OTUiIHk9IjE5OCIgZmlsbD0iI2ZmZiIgZm9udC1zaXplPSIxNiI+V2VpZ2h0ZWQ8L3RleHQ+PHRleHQgeD0iNTk1IiB5PSIyMjAiIGZpbGw9IiNmZmYiIGZvbnQtc2l6ZT0iMTYiPmF2ZXJhZ2U8L3RleHQ+Cjx0ZXh0IHg9IjczNSIgeT0iMTUwIiBmaWxsPSIjRkRFNjhBIiBmb250LXNpemU9IjE2Ij5FYXJseSBibGlnaHQ8L3RleHQ+PHRleHQgeD0iNzM1IiB5PSIyMDUiIGZpbGw9IiNGREU2OEEiIGZvbnQtc2l6ZT0iMTYiPkxhdGUgYmxpZ2h0PC90ZXh0Pjx0ZXh0IHg9IjczNSIgeT0iMjYwIiBmaWxsPSIjRkRFNjhBIiBmb250LXNpemU9IjE2Ij5IZWFsdGh5PC90ZXh0PjwvZz4KPGcgc3Ryb2tlPSIjRkRFNjhBIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik0yNzAgMTYwTDM0MCAxMjJNMjcwIDIzMEwzNDAgMjc4TTQ4MCAxMjJMNTQwIDE5ME00ODAgMjc4TDU0MCAyMTBNNjUwIDIwMEw2NjUgMjAwIi8+PC9nPjwvc3ZnPgo=" alt="Ensemble of VGG19 and ResNet50V2 classifying potato leaf disease" loading="lazy"/></div>
+        <div class="proj-body"><div class="feat-tag" style="margin-bottom:.6rem;">⭐ Published Paper</div><h4>Potato Leaf Disease Classification using a Hybrid Deep Learning Model for Sustainable Agriculture</h4>
+          <p>Published in the European Journal of Applied Science, Engineering and Technology (Vol. 4, Issue 6, pp. 1–15). Built a weighted ensemble of VGG19 and ResNet50V2 with ImageNet transfer learning to classify leaves as Early Blight, Late Blight or Healthy. Used augmentation and performance-based weighted averaging, which beat either model alone. Aimed at helping farmers detect crop disease early, even in remote areas.</p>
+          <div class="tech-tags"><span class="tech-tag">Python</span><span class="tech-tag">TensorFlow</span><span class="tech-tag">VGG19</span><span class="tech-tag">ResNet50V2</span><span class="tech-tag">Transfer Learning</span><span class="tech-tag">Computer Vision</span></div>
+          <a href="https://hal.science/hal-05840468/" class="proj-link" target="_blank" rel="noopener">Read Paper</a></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="proj-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkZlYXR1cmUtb3B0aW1pc2VkIExpZ2h0R0JNIGVuc2VtYmxlIGZvciBhbnRpZnJlZXplIHByb3RlaW4gcHJlZGljdGlvbiI+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMwQjNBNUIiLz4KPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN0REM0ZDIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PHBhdGggZD0iTTcwIDMwMGM0MC0xMjAgOTAgNjAgMTMwLTYwczcwLTEwMCAxMDAtMjAiLz48cGF0aCBkPSJNNzAgMjUwYzUwLTkwIDgwIDQwIDEyMC00MCIvPjwvZz48ZyBmaWxsPSIjQkFFNkZEIj48Y2lyY2xlIGN4PSI3MCIgY3k9IjMwMCIgcj0iOCIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjI0MCIgcj0iOCIvPjxjaXJjbGUgY3g9IjMwMCIgY3k9IjIyMCIgcj0iOCIvPjwvZz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjx0ZXh0IHg9IjE5MCIgeT0iMTIwIiBmaWxsPSIjRTBGMkZFIiBmb250LXNpemU9IjE4Ij5Qcm90ZWluIHNlcXVlbmNlIGZlYXR1cmVzPC90ZXh0Pgo8cmVjdCB4PSIzNjAiIHk9IjkwIiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjUwIiByeD0iMTAiIGZpbGw9IiNmZmYiLz48dGV4dCB4PSI0MTUiIHk9IjEyMiIgZmlsbD0iIzBCM0E1QiIgZm9udC1zaXplPSIxNiI+RmVhdHVyZSBzZWxlY3Rpb248L3RleHQ+CjxnIGZpbGw9IiMwRUE1RTkiPjxyZWN0IHg9IjM2MCIgeT0iMTkwIiB3aWR0aD0iMzAiIGhlaWdodD0iMTEwIiByeD0iNiIvPjxyZWN0IHg9IjQwMCIgeT0iMjE1IiB3aWR0aD0iMzAiIGhlaWdodD0iODUiIHJ4PSI2Ii8+PHJlY3QgeD0iNDQwIiB5PSIxNzAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxMzAiIHJ4PSI2Ii8+PC9nPjx0ZXh0IHg9IjQxNSIgeT0iMzM1IiBmaWxsPSIjRTBGMkZFIiBmb250LXNpemU9IjE2Ij5MaWdodEdCTSBlbnNlbWJsZTwvdGV4dD4KPHJlY3QgeD0iNTYwIiB5PSIxNzAiIHdpZHRoPSIxODAiIGhlaWdodD0iNzAiIHJ4PSIxMiIgZmlsbD0iIzdERDNGQyIvPjx0ZXh0IHg9IjY1MCIgeT0iMjAwIiBmaWxsPSIjMEIzQTVCIiBmb250LXNpemU9IjE4Ij5BbnRpZnJlZXplPC90ZXh0Pjx0ZXh0IHg9IjY1MCIgeT0iMjI0IiBmaWxsPSIjMEIzQTVCIiBmb250LXNpemU9IjE4Ij5vciBub3Q/PC90ZXh0Pjx0ZXh0IHg9IjY1MCIgeT0iMjg1IiBmaWxsPSIjQkFFNkZEIiBmb250LXNpemU9IjE1Ij4rIGludGVycHJldGFibGUgZmVhdHVyZXM8L3RleHQ+PC9nPgo8cGF0aCBkPSJNNDc1IDExNUw1NjAgMTkwTTQ3NSAyNDVMNTYwIDIyMCIgc3Ryb2tlPSIjQkFFNkZEIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiLz48L3N2Zz4K" alt="Feature-optimised LightGBM ensemble for antifreeze protein prediction" loading="lazy"/></div>
+        <div class="proj-body"><div class="feat-tag" style="margin-bottom:.6rem;">⭐ Published Paper</div><h4>Feature-Optimized LightGBM Ensemble Framework for Interpretable and High-Accuracy Antifreeze Protein Prediction</h4>
+          <p>Published research on machine learning prediction of antifreeze proteins. Explored feature optimization and LightGBM-based ensemble learning, with a focus on model interpretability and prediction accuracy.</p>
+          <div class="tech-tags"><span class="tech-tag">Python</span><span class="tech-tag">LightGBM</span><span class="tech-tag">Ensemble Learning</span><span class="tech-tag">Scikit-learn</span></div>
+          <a href="https://scientia-nexus.org/index.php/jpcs/article/view/4" class="proj-link" target="_blank" rel="noopener">Read Paper</a></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="proj-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlVsdHJhc291bmQgc2NhbiB3aXRoIEFJLWhpZ2hsaWdodGVkIG5lcnZlIHN0cnVjdHVyZXMiPjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMEEwRjE0Ii8+CjxwYXRoIGQ9Ik00MDAgMjBMOTAgMzgwaDYyMHoiIGZpbGw9IiMxRjI5MzMiIHN0cm9rZT0iIzlDQTNBRiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIuOSIvPgo8ZyBvcGFjaXR5PSIuMzUiIGZpbGw9IiM5Q0EzQUYiPjxlbGxpcHNlIGN4PSI0MDAiIGN5PSIyNTAiIHJ4PSIxNTAiIHJ5PSI3MCIvPjxlbGxpcHNlIGN4PSIzMzAiIGN5PSIzMTAiIHJ4PSI2MCIgcnk9IjI1Ii8+PGVsbGlwc2UgY3g9IjQ4MCIgY3k9IjE0MCIgcng9IjcwIiByeT0iMjIiLz48L2c+CjxlbGxpcHNlIGN4PSI0MDAiIGN5PSIyMTAiIHJ4PSI0NiIgcnk9IjMwIiBmaWxsPSIjMjJEM0VFIiBvcGFjaXR5PSIuNzUiIHN0cm9rZT0iIzIyRDNFRSIgc3Ryb2tlLXdpZHRoPSIzIi8+PGNpcmNsZSBjeD0iNTAwIiBjeT0iMjcwIiByPSIyNiIgZmlsbD0iI0ZCQkYyNCIgb3BhY2l0eT0iLjc1Ii8+PGVsbGlwc2UgY3g9IjMwMCIgY3k9IjI2MCIgcng9IjM4IiByeT0iMjIiIGZpbGw9IiNGNTlFMEIiIG9wYWNpdHk9Ii43Ii8+CjxwYXRoIGQ9Ik02NDAgNDBMNDQwIDE5NSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1kYXNoYXJyYXk9IjEwIDgiLz48Y2lyY2xlIGN4PSI0NDAiIGN5PSIxOTUiIHI9IjYiIGZpbGw9IiNmZmYiLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmYiPjx0ZXh0IHg9IjQzMCIgeT0iMTcwIiBmaWxsPSIjMjJEM0VFIj5OZXJ2ZTwvdGV4dD48dGV4dCB4PSI1MzAiIHk9IjMwMCIgZmlsbD0iI0Y1OUUwQiI+QXJ0ZXJ5PC90ZXh0Pjx0ZXh0IHg9IjU2MCIgeT0iNjAiPk5lZWRsZSBwYXRoPC90ZXh0Pjx0ZXh0IHg9IjQwIiB5PSI2MCIgZmlsbD0iI0Y1OUUwQiI+QUkgb3ZlcmxheTwvdGV4dD48dGV4dCB4PSI0MCIgeT0iODQiIGZpbGw9IiM5Q0EzQUYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iMTQiPjkzLjUlIGxhbmRtYXJrIGFjY3VyYWN5PC90ZXh0PjwvZz48L3N2Zz4K" alt="Ultrasound scan with AI-highlighted nerve structures" loading="lazy"/></div>
+        <div class="proj-body"><div class="feat-tag" style="margin-bottom:.6rem;">📄 Review Paper</div><h4>Artificial Intelligence for Ultrasound Image Acquisition and Interpretation in Regional Anesthesia: A Narrative Review of Current Evidence</h4>
+          <p>Narrative review of AI-enabled devices in ultrasound-guided regional anesthesia (UGRA). Reported findings include about 93.5% accuracy in identifying eight anatomical landmarks across nine nerve block regions, better block-view acquisition and structure identification for non-experts using AI, and a lower reported rate of paresthesia on puncture. Concludes that larger multicenter randomized trials are needed. Co-authors: Amna Arif, Habib Ur Rehman, Irfan Khan and Naji Ullah. Applied Plant and Life Sciences (2026), 3: 49–63.</p>
+          <div class="tech-tags"><span class="tech-tag">Artificial Intelligence</span><span class="tech-tag">Ultrasound Imaging</span><span class="tech-tag">Regional Anesthesia</span><span class="tech-tag">Deep Learning</span><span class="tech-tag">Narrative Review</span></div>
+          <a href="https://doi.org/10.65822/j.apls/2026.024" class="proj-link" target="_blank" rel="noopener">Read Paper</a></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="proj-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkFnZW50IGxvb3Agd2l0aCBwbGFubmluZywgdG9vbHMsIG1lbW9yeSBhbmQgdmVyaWZpY2F0aW9uIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iIzJBMTYwOCIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+PHJlY3QgeD0iMzIwIiB5PSIzMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI1NiIgcng9IjEyIiBmaWxsPSIjZmZmIi8+PHRleHQgeD0iNDAwIiB5PSI2NSIgZmlsbD0iIzJBMTYwOCI+R29hbDwvdGV4dD4KPHJlY3QgeD0iMzIwIiB5PSIxNTAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMTAwIiByeD0iMTQiIGZpbGw9IiNFQTU4MEMiLz48dGV4dCB4PSI0MDAiIHk9IjE5MCIgZmlsbD0iI2ZmZiI+TExNIGFnZW50PC90ZXh0Pjx0ZXh0IHg9IjQwMCIgeT0iMjIwIiBmaWxsPSIjZmZmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iNDAwIj5wbGFuIMK3IGFjdCDCtyByZWZsZWN0PC90ZXh0Pgo8cmVjdCB4PSI2MCIgeT0iMTY1IiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjcwIiByeD0iMTIiIGZpbGw9IiNGREJBNzQiLz48dGV4dCB4PSIxMzUiIHk9IjIwNiIgZmlsbD0iIzJBMTYwOCI+TWVtb3J5PC90ZXh0Pgo8cmVjdCB4PSI1OTAiIHk9IjExMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSI1NiIgcng9IjEyIiBmaWxsPSIjRkRCQTc0Ii8+PHRleHQgeD0iNjY1IiB5PSIxNDUiIGZpbGw9IiMyQTE2MDgiPlRvb2xzIC8gTUNQPC90ZXh0Pgo8cmVjdCB4PSI1OTAiIHk9IjIzNCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSI1NiIgcng9IjEyIiBmaWxsPSIjRkVEN0FBIi8+PHRleHQgeD0iNjY1IiB5PSIyNjkiIGZpbGw9IiMyQTE2MDgiPkFQSXMgwrcgY29kZTwvdGV4dD4KPHJlY3QgeD0iMjkwIiB5PSIzMTAiIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHJ4PSIxMiIgZmlsbD0iI2ZmZiIvPjx0ZXh0IHg9IjQwMCIgeT0iMzQ1IiBmaWxsPSIjMkExNjA4Ij5WZXJpZnkgwrcgYXBwcm92ZTwvdGV4dD48L2c+CjxnIHN0cm9rZT0iI0ZFRDdBQSIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIj48cGF0aCBkPSJNNDAwIDg2VjE1ME0yMTAgMjAwSDMyME00ODAgMTc1TDU5MCAxNDBNNDgwIDIyNUw1OTAgMjYyTTQwMCAyNTBWMzEwIi8+PHBhdGggZD0iTTI5MCAzMzhDMjIwIDMzOCAxMjAgMzMwIDEyMCAyNDAiIHN0cm9rZS1kYXNoYXJyYXk9IjggNiIvPjwvZz48L3N2Zz4K" alt="Agent loop with planning, tools, memory and verification" loading="lazy"/></div>
+        <div class="proj-body"><div class="feat-tag" style="margin-bottom:.6rem;">📄 Review Paper</div><h4>Agentic AI in Real-World Systems: A Critical Review of Autonomous Workflows, Tool Integration, Applications, and Performance Evaluation</h4>
+          <p>Critical review of 80 sources on agentic AI: how agents plan workflows, integrate tools, where they are applied, and how they are evaluated. Finds that none of 27 application cases reports a production deployment with measured outcomes, and that structural privilege separation was the only defence with near-zero attack success. Journal for Social Science Studies, 4(7), 142–241 (2026). First author. Co-authors: Hamid Ghous, Muhammad Zubair, Muzammil Hussain, Muhammad Akmal Shahzad and Ghulam Muhy Ud Deen Raee (corresponding author).</p>
+          <div class="tech-tags"><span class="tech-tag">Agentic AI</span><span class="tech-tag">Autonomous Workflows</span><span class="tech-tag">Tool Integration</span><span class="tech-tag">Performance Evaluation</span><span class="tech-tag">Critical Review</span></div>
+          <a href="https://jssstudies.org/site/index.php/jsss/article/view/497" class="proj-link" target="_blank" rel="noopener">Read Paper</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-layout">
+      <div class="contact-intro reveal">
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-title">Let's Work<br/><em>Together</em></h2>
+        <div class="divider"></div>
+        <p>I'm open to software development roles, research collaborations and project work. If you have an opportunity in mind or just want to connect, feel free to reach out.</p>
+        <div class="contact-details">
+          <div class="contact-item"><div class="contact-item-icon">📍</div><div class="contact-item-text"><label>Location</label><span>Sadiqabad, Pakistan</span></div></div>
+          <div class="contact-item"><div class="contact-item-icon">📞</div><div class="contact-item-text"><label>Phone</label><a href="tel:+923231339594">+92 323 1339594</a></div></div>
+          <div class="contact-item"><div class="contact-item-icon">✉️</div><div class="contact-item-text"><label>Email</label><a href="mailto:laibasaeed026@gmail.com">laibasaeed026@gmail.com</a></div></div>
+        </div>
+      </div>
+      <div class="contact-links reveal">
+        <p style="color:var(--muted);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.5rem;">Connect With Me</p>
+        <a href="https://www.linkedin.com/in/laiba-saeed-9062bb265" class="contact-link-btn" target="_blank" rel="noopener">LinkedIn Profile <span>↗</span></a>
+        <a href="https://github.com/Laiba60" class="contact-link-btn" target="_blank" rel="noopener">GitHub Repositories <span>↗</span></a>
+        <a href="https://scholar.google.com/citations?user=81XlyzgAAAAJ&hl=en" class="contact-link-btn" target="_blank" rel="noopener">Google Scholar Profile <span>↗</span></a>
+       <a href="LAIBA-SAEED-CV.pdf" class="contact-link-btn" download>Download Resume <span>↓</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><p>Laiba Saeed</p></footer>
+
+<script>
+const typingEl=document.getElementById('typing-text');
+const words=['MERN Stack Development','React & Next.js','Machine Learning','Deep Learning','Computer Vision'];
+let wIdx=0,cIdx=0,deleting=false;
+function typeLoop(){const word=words[wIdx];
+  if(!deleting){typingEl.textContent=word.slice(0,++cIdx);if(cIdx===word.length){deleting=true;setTimeout(typeLoop,1800);return;}}
+  else{typingEl.textContent=word.slice(0,--cIdx);if(cIdx===0){deleting=false;wIdx=(wIdx+1)%words.length;setTimeout(typeLoop,400);return;}}
+  setTimeout(typeLoop,deleting?60:100);}
+typeLoop();
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>20));
+const ham=document.getElementById('hamburger'),navLinks=document.getElementById('nav-links');
+ham.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+const io=new IntersectionObserver(es=>{es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
